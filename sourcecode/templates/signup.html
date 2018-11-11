@@ -1,0 +1,53 @@
+<html>
+<head>
+	<title>URL Compressor</title>
+	<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" />
+</head>
+<body>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="http://set09103.napier.ac.uk:9117/">URL Compressor</a>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+				{% if logged %}
+					<li><a href="http://set09103.napier.ac.uk:9117/mylinks"><span class="glyphicon glyphicon-tag"></span> My Links</a></li>
+					<li><a href="http://set09103.napier.ac.uk:9117/logout"><span class="glyphicon glyphicon-log-out"></span> Log Out </a></li>
+				{% else %}
+					<li><a href="http://set09103.napier.ac.uk:9117/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+					<li><a href="http://set09103.napier.ac.uk:9117/login"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+				{% endif %}
+			</ul>
+		</div>
+	</nav>
+
+	{% if error %}
+		<div class="alert alert-danger alert-dismissible fade in">
+			{{ error }}
+		</div>
+	{% endif %}
+	<br><br><br><br><br><br>
+	<div class='container'>
+		<div class="panel panel-primary">
+			<div class="panel-heading"><h1 align="center">Create New Account<h1></div>
+			<div class="panel-body">
+				<form method='POST'>
+				<label for="email"><h4>Email:</h4></label>
+				<br>
+				<input type="text" placeholder="Enter Email" name="email" class="form-control" required>
+				<br><br>
+				<label for="passwowrd"><h4>Password:</h4></label>
+				<br>
+				<input type="password" placeholder="Enter Password" name="password" id="password" class="form-control" required>
+				<br><br>
+				<label for="password2"><h4>Repeat Password:</h4></label>
+				<br>
+				<input type="password" placeholder="Repeat Password" name="password2" id="password2" class="form-control" required>
+				<br><br><br><br>
+				<input type="submit" class="btn btn-primary btn-block btn-lg"  name="postButton" value="Sign Up">
+				<br>
+			</div>
+		</form>
+	</div>
+</body>
+</html>
