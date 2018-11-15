@@ -1,0 +1,53 @@
+<html>
+<head>
+	<title>URL Compressor</title>
+	<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" />
+	<link href="{{ url_for('static', filename='css/extraClasses.css') }}" rel="stylesheet" />
+</head>
+<body>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="http://set09103.napier.ac.uk:9117/">URL Compressor</a>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+				{% if logged %}
+					<li><a href="http://set09103.napier.ac.uk:9117/mylinks"><span class="glyphicon glyphicon-tag"></span> My Links</a></li>
+					<li><a href="http://set09103.napier.ac.uk:9117/myaccount"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
+					<li><a href="http://set09103.napier.ac.uk:9117/logout"><span class="glyphicon glyphicon-log-out"></span> Log Out </a></li>
+				{% else %}
+					<li><a href="http://set09103.napier.ac.uk:9117/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+					<li><a href="http://set09103.napier.ac.uk:9117/login"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+				{% endif %}
+			</ul>
+		</div>
+	</nav>
+	<br>
+	<h1><center><u>My Links</u></center></h1>
+	<br><br>
+	{% if myURLs %}
+	<div class="row" style="padding:0% 2% 2%">
+		{% for i in range(total) %}
+ 			<div class="col-md-4">
+       				<div class="panel panel-primary">
+               				<div class="panel-body">
+						<h4>Compressed URL:</h4>
+						<pre style="background-color: white; border-color: white;"><h4>set09103.napier.ac.uk:9117/url/{{ myURLs[i][0] }}</h4></pre>
+						<h4>Original URL:</h4>
+						<pre style="background-color: white; border-color: white"><h4><a href="{{ myURLs[i][1] }}" style="cursor:pointer">{{ myURLs[i][1] }}</a></h4></pre>
+						<h4>Total Clicks:</h4>
+						<pre style="background-color: white; border-color: white"><h4>{{ myURLs[i][2] }}</h4></pre>
+                				<br><br>
+						<center><h4><a href="http://set09103.napier.ac.uk:9117/del/{{ myURLs[i][0] }}"><div class="delButton">Delete Link <span class="glyphicon glyphicon-trash"></span></div></a></h4></center>
+					</div>
+            			</div>
+    			</div>	
+			<br><br>
+		{% endfor %}
+	</div>
+	{% else %}
+		<br><br><br>
+		<h2><center>No owned Links could be found!</center></h2>
+	{% endif %}
+</body>
+</html>

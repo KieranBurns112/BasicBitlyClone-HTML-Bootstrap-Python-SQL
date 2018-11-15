@@ -12,6 +12,7 @@
    	 		<ul class="nav navbar-nav navbar-right">
 				{% if logged %}
 					<li><a href="http://set09103.napier.ac.uk:9117/mylinks"><span class="glyphicon glyphicon-tag"></span> My Links</a></li>
+					<li><a href="http://set09103.napier.ac.uk:9117/myaccount"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
 					<li><a href="http://set09103.napier.ac.uk:9117/logout"><span class="glyphicon glyphicon-log-out"></span> Log Out </a></li>
 				{% else %}
     	  				<li><a href="http://set09103.napier.ac.uk:9117/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -20,5 +21,37 @@
 			</ul>
 		</div>
 	</nav>
+	<br><br><br><br><br><br>
+	<div class="container">
+			{% if logged %}
+				{% if link %}
+					<h2>
+						<center>	
+							Your link is:
+							<br>
+							set09103.napier.ac.uk:9117/url/{{ link }}
+							<br><br>
+							Links can be checked or deleted any time from the "My Links" page
+						</center>
+					</h2>
+				{% else %}
+					<br><br>
+					<center>
+						<h2><u>Enter a URL to Compress:</u></h2>
+						<br>
+						<form method='POST'>
+							<div class="col-lg-8 col-lg-offset-2">
+								<input type="text"  name="rawURL" class="form-control input-lg" required>
+								<br>
+								<input type="submit" class="btn btn-primary btn-block btn-lg" name="postButton" value="Compress!">
+								<br>
+							</div> 	
+						</form>
+					</center>
+				{% endif %}				
+			{% else %}
+				<h2><center>Sign Up or Log In to begin creating compressed URLs</center></h2>
+			{% endif %}
+	</div>
 </body>
 </html>

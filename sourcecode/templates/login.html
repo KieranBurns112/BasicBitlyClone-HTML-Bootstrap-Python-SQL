@@ -12,6 +12,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				{% if logged %}
 					<li><a href="http://set09103.napier.ac.uk:9117/mylinks"><span class="glyphicon glyphicon-tag"></span> My Links</a></li>
+					<li><a href="http://set09103.napier.ac.uk:9117/myaccount"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
 					<li><a href="http://set09103.napier.ac.uk:9117/logout"><span class="glyphicon glyphicon-log-out"></span> Log Out </a></li>
 				{% else %}
 					<li><a href="http://set09103.napier.ac.uk:9117/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -32,9 +33,9 @@
 			<div class="panel-heading"><h1 align="center">Log In<h1></div>
 			<div class="panel-body">
 				<form method='POST'>
-				<label for="email"><h4>Email:</h4></label>
+				<label for="Username"><h4>Username:</h4></label>
 				<br>
-				<input type="text" placeholder="Enter Email" name="email" class="form-control" required>
+				<input type="text" placeholder="Enter Username" name="username" class="form-control" required>
 				<br><br>
 				<label for="passwowrd"><h4>Password:</h4></label>
 				<br>
