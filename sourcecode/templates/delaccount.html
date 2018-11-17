@@ -1,3 +1,4 @@
+
 <html>
 <head>
 	<title>URL Compressor</title>
@@ -12,7 +13,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				{% if logged %}
 					<li><a href="http://set09103.napier.ac.uk:9117/mylinks"><span class="glyphicon glyphicon-tag"></span> My Links</a></li>
-					<li><a href="http://set09103.napier.ac.uk:9117/myaccount"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
+					<li><a href="http://set09103.napier.ac.uk:9117/myaccount"><span class="glyphicon glyphicon-user"></span> My Account</a></li>	
 					<li><a href="http://set09103.napier.ac.uk:9117/logout"><span class="glyphicon glyphicon-log-out"></span> Log Out </a></li>
 				{% else %}
 					<li><a href="http://set09103.napier.ac.uk:9117/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -21,30 +22,18 @@
 			</ul>
 		</div>
 	</nav>
-
-	{% if error %}
-		<div class="alert alert-danger alert-dismissible fade in">
-			{{ error }}
-		</div>
-	{% endif %}
+	
 	<br><br><br><br><br><br>
 	<div class='container'>
-		<div class="panel panel-primary">
-			<div class="panel-heading"><h1 align="center">Log In<h1></div>
-			<div class="panel-body">
-				<form method='POST'>
-				<label for="Username"><h4>Username:</h4></label>
-				<br>
-				<input type="text" placeholder="Enter Username" name="username" class="form-control" required>
-				<br><br>
-				<label for="password"><h4>Password:</h4></label>
-				<br>
-				<input type="password" placeholder="Enter Password" name="password" id="password" class="form-control" required>
-				<br><br><br><br>
-				<input type="submit" class="btn btn-primary btn-block btn-lg"  name="postButton" value="Log In">
-				<br>
-			</div>
+		<h2>
+			By clicking the button below, your account along with all asociated URLs will be deleted. 
+			Please concider carefully before clicking the button as your username will be free'd up and will be able to be taken by anybody who decides to use it in the signup section.						
+		</h2>
+		<br><br>
+		<form method='POST'>
+			<h2><input type="submit" class="btn btn-danger btn-block btn-lg" name="postButton" value="Delete Account"></h2>
 		</form>
+		<br><br>
 	</div>
 </body>
 </html>

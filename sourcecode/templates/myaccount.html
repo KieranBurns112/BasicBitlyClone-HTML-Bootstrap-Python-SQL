@@ -1,0 +1,34 @@
+<html>
+<head>
+	<title>URL Compressor</title>
+	<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" />
+</head>
+<body>
+	<nav class="navbar navbar-inverse">
+  		<div class="container-fluid">
+    			<div class="navbar-header">
+      				<a class="navbar-brand" href="http://set09103.napier.ac.uk:9117/">URL Compressor</a>
+    			</div>
+   	 		<ul class="nav navbar-nav navbar-right">
+				{% if logged %}
+					<li><a href="http://set09103.napier.ac.uk:9117/mylinks"><span class="glyphicon glyphicon-tag"></span> My Links</a></li>
+					<li><a href="http://set09103.napier.ac.uk:9117/myaccount"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
+					<li><a href="http://set09103.napier.ac.uk:9117/logout"><span class="glyphicon glyphicon-log-out"></span> Log Out </a></li>
+				{% else %}
+    	  				<li><a href="http://set09103.napier.ac.uk:9117/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+    	  				<li><a href="http://set09103.napier.ac.uk:9117/login"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+ 	  			{% endif %}
+			</ul>
+		</div>
+	</nav>
+	<br><br><br><br><br><br>
+	<div class="container">
+		{% if logged %}
+			<a href="http://set09103.napier.ac.uk:9117/changepw" class="btn btn-primary btn-block btn-lg" role="button"><h2>Change Password</h2></a>
+			<br><br>
+			<a href="http://set09103.napier.ac.uk:9117/delaccount" class="btn btn-danger btn-block btn-lg" role="button"><h2>Delete Account</h2></a>
+			<br><br>
+		{% endif %}
+	</div>
+</body>
+</html>

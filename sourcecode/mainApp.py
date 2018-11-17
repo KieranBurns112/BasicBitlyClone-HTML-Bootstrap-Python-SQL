@@ -154,7 +154,7 @@ def myaccount():
 	if not session['logged']:
 		return redirect('/login')
 	else:
-		return session['user']
+		return render_template('myaccount.html', logged=checkLogged())
 
 @app.route('/url/<url>')
 def url(url):
@@ -184,7 +184,7 @@ def url(url):
 		conn.commit()
 		return redirect(result[0])		
 	else:
-		return "!!!!!!!!!!!!!!!!!!!!!!!!!!!!FAIL PAGE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+		return render_template('errorPage.html', logged=checkLogged())
 
 
 @app.route('/del/<url>')
@@ -208,5 +208,76 @@ def delurl(url):
                         	                   COLLATE NOCASE""",
                         	               (url,))
 				conn.commit()
-				return redirect('/mylinks')
-	return "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!FAIL PAGE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" 
+	return redirect('/mylinks')
+
+@app.route('/changepw')
+def changepw():
+	logged = checkLogged()
+	if logged:
+		return render_template('changepw.html', logged=checkLogged())
+	else:
+		return redirect('/login')
+
+@app.route('/changepw', methods=['POST'])
+def changepw_post():	
+	error = None
+	password = request.form['password']
+	newPassword = request.form['newpassword']
+	newPassword2 = request.form['newpassword2']
+
+	if newPassword != newPassword2:
+		error = "New Passwords did not match!"
+		return render_template('changepw.html', logged=checkLogged(), error=error)
+	else:
+		conn = sqlite3.connect(userData)
+		cursor = conn.cursor()
+		cursor.execute(""" SELECT password
+				   FROM login
+				   WHERE username=?""",
+			       (session['user'],))
+			
+		readPW = cursor.fetchone()[0].encode('utf8')
+
+		if readPW == bcrypt.hashpw(password.encode('utf8'), readPW):
+				cursor = conn.cursor()
+				hash = bcrypt.hashpw(newPassword.encode('utf8'), bcrypt.gensalt())
+				cursor.execute(""" UPDATE login
+						   SET password=?
+						   WHERE username=?""",
+					       (hash, session['user'],))
+				conn.commit()
+				return redirect('/')
+		else:
+			error = "Incorrect current password!"
+			return render_template('changepw.html', logged=checkLogged(), error=error)
+		
+
+@app.route('/delaccount')
+def delaccount():
+	logged = checkLogged()
+	if logged:
+		return render_template('delaccount.html', logged=checkLogged())
+	else:
+		return redirect('/login')
+
+@app.route('/delaccount', methods=['POST'])
+def delaccount_post():
+	conn = sqlite3.connect(urlData)
+	cursor = conn.cursor()
+	cursor.execute(""" DELETE FROM userURLs
+			   WHERE owner=?""",
+		       (session['user'],))
+	conn.commit()
+
+	conn = sqlite3.connect(userData)
+	cursor = conn.cursor()
+	cursor.execute(""" DELETE FROM login
+			   WHERE username=?""",
+		       (session['user'],))
+     	conn.commit()
+	
+	return redirect('/logout')
+
+@app.errorhandler(404)
+def noPage(e):
+	return render_template('errorPage.html', logged=checkLogged()),404

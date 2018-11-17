@@ -12,7 +12,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				{% if logged %}
 					<li><a href="http://set09103.napier.ac.uk:9117/mylinks"><span class="glyphicon glyphicon-tag"></span> My Links</a></li>
-					<li><a href="http://set09103.napier.ac.uk:9117/myaccount"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
+					<li><a href="http://set09103.napier.ac.uk:9117/myaccount"><span class="glyphicon glyphicon-user"></span> My Account</a></li>	
 					<li><a href="http://set09103.napier.ac.uk:9117/logout"><span class="glyphicon glyphicon-log-out"></span> Log Out </a></li>
 				{% else %}
 					<li><a href="http://set09103.napier.ac.uk:9117/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -30,18 +30,22 @@
 	<br><br><br><br><br><br>
 	<div class='container'>
 		<div class="panel panel-primary">
-			<div class="panel-heading"><h1 align="center">Log In<h1></div>
+			<div class="panel-heading"><h1 align="center">Change Password<h1></div>
 			<div class="panel-body">
 				<form method='POST'>
-				<label for="Username"><h4>Username:</h4></label>
-				<br>
-				<input type="text" placeholder="Enter Username" name="username" class="form-control" required>
-				<br><br>
 				<label for="password"><h4>Password:</h4></label>
 				<br>
-				<input type="password" placeholder="Enter Password" name="password" id="password" class="form-control" required>
+				<input type="password" placeholder="Enter Current Password" name="password" class="form-control" required>
+				<br><br>
+				<label for="newpasswowrd"><h4>New Password:</h4></label>
+				<br>
+				<input type="password" placeholder="Enter New Password" name="newpassword" class="form-control" required>
+				<br><br>
+				<label for="newpassword2"><h4>Repeat New Password:</h4></label>
+				<br>
+				<input type="password" placeholder="Repeat New Password" name="newpassword2" class="form-control" required>
 				<br><br><br><br>
-				<input type="submit" class="btn btn-primary btn-block btn-lg"  name="postButton" value="Log In">
+				<input type="submit" class="btn btn-primary btn-block btn-lg"  name="postButton" value="Submit New Password">
 				<br>
 			</div>
 		</form>
